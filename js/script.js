@@ -7,10 +7,9 @@ const fatchAPI = async () => {
     const res = await fetch("https://blog.apiki.com/wp-json/wp/v2/posts?_embed&categories=518")
     const data = await res.json()
     console.log(data)
-    card__image.src = data[0]._embedded["wp:featuredmedia"][0].media_details.sizes.thumbnail.source_url
-    card__tittle.innerHTML = data[0].title.rendered
-    card__paragrafo.innerHTML = data[0].excerpt.rendered
-    card__link.innerHTML = data[0].link
+    card__image.src =
 }
 
 fatchAPI()
+
+// data[0]._embedded["wp:featuredmedia"][0].media_details.sizes.medium.source_url
