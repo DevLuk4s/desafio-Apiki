@@ -40,14 +40,30 @@ const renderAPI = async () => {
     card__data.classList.add("card__data");
     card__data.innerHTML = data[id].date;
 
+    const card__artigo = document.createElement("a");
+    card__artigo.classList.add("card__artigo");
+    card__artigo.innerHTML = "Ler artigo";
+    card__artigo.addEventListener("click", (evt) => {
+      artigo();
+    });
+
     container__image.appendChild(card__image);
     container__texto.appendChild(card__titulo);
     container__texto.appendChild(card__data);
     container__texto.appendChild(card__paragrafo);
+    container__texto.appendChild(card__artigo);
     container.appendChild(container__image);
     container.appendChild(container__texto);
     card.appendChild(container);
   });
+};
+
+const artigo = async () => {
+  window.location.href = "artigo.html";
+  const data = await fetchAPI();
+  console.log(data);
+  // data.map((el, id) => {
+  // });
 };
 
 renderAPI();

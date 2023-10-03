@@ -1,10 +1,15 @@
-const card = document.querySelector(".container");
+const card = document.querySelector(".card");
 
-const fatchAPI = async () => {
+const fetchAPI = async () => {
   const res = await fetch(
     "https://blog.apiki.com/wp-json/wp/v2/posts?_embed&categories=518"
   );
   const data = await res.json();
+  return data;
+};
+
+const renderAPI = async () => {
+  const data = await fetchAPI();
   console.log(data);
   data.map((el, id) => {
     const container__texto = document.createElement("div");
@@ -12,6 +17,9 @@ const fatchAPI = async () => {
 
     const container__image = document.createElement("div");
     container__image.classList.add("image");
+
+    const container = document.createElement("div");
+    container.classList.add("container");
 
     const card__image = document.createElement("img");
     card__image.classList.add("card__image");
@@ -24,11 +32,38 @@ const fatchAPI = async () => {
     card__titulo.classList.add("card__titulo");
     card__titulo.innerHTML = data[id].title.rendered;
 
+    const card__paragrafo = document.createElement("p");
+    card__paragrafo.classList.add("card__paragrafo");
+    card__paragrafo.innerHTML = data[id].excerpt.rendered;
+
+    const card__data = document.createElement("span");
+    card__data.classList.add("card__data");
+    card__data.innerHTML = data[id].date;
+
+    const card__artigo = document.createElement("a");
+    card__artigo.classList.add("card__artigo");
+    card__artigo.innerHTML = 'Ler artigo'
+    card__artigo.addEventListener("click", evt => {
+      artigo()
+    })
+
     container__image.appendChild(card__image);
     container__texto.appendChild(card__titulo);
-    card.appendChild(container__image);
-    card.appendChild(container__texto);
+    container__texto.appendChild(card__data);
+    container__texto.appendChild(card__paragrafo);
+    container__texto.appendChild(card__artigo);
+    container.appendChild(container__image);
+    container.appendChild(container__texto);
+    card.appendChild(container);
   });
 };
 
-fatchAPI();
+const artigo = async () => {
+  window.location.href = "artigo.html";
+  const data = await fetchAPI();
+  console.log(data)
+  // data.map((el, id) => {
+  // });
+}
+
+renderAPI();

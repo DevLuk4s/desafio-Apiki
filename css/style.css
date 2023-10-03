@@ -44,3 +44,7 @@ body {
   font-size: 900;
   text-transform: uppercase;
 }
+
+.card__artigo {
+  color: rgb(44, 44, 169);
+}
