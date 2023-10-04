@@ -48,3 +48,23 @@ body {
 .card__artigo {
   color: rgb(44, 44, 169);
 }
+
+.leia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn__leia {
+  font-size: 16px;
+  padding: 20px;
+  color: blue;
+  background-color: #e3e7e8;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
