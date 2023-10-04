@@ -8,9 +8,9 @@ const fetchAPI = async () => {
   return data;
 };
 
-const renderAPI = async () => {
+const criarBlog = async () => {
   const data = await fetchAPI();
-  console.log(data);
+  console.log(data)
   data.map((el, id) => {
     const container__texto = document.createElement("div");
     container__texto.classList.add("texto");
@@ -42,10 +42,7 @@ const renderAPI = async () => {
 
     const card__artigo = document.createElement("a");
     card__artigo.classList.add("card__artigo");
-    card__artigo.innerHTML = "Ler artigo";
-    card__artigo.addEventListener("click", (evt) => {
-      artigo();
-    });
+    card__artigo.innerHTML = data[id].slug
 
     container__image.appendChild(card__image);
     container__texto.appendChild(card__titulo);
@@ -58,12 +55,4 @@ const renderAPI = async () => {
   });
 };
 
-const artigo = async () => {
-  window.location.href = "artigo.html";
-  const data = await fetchAPI();
-  console.log(data);
-  // data.map((el, id) => {
-  // });
-};
-
-renderAPI();
+criarBlog();
