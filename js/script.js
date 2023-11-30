@@ -1,4 +1,5 @@
 const card = document.querySelector(".card");
+const artigo = document.querySelector(".artigo");
 
 const fetchAPI = async () => {
   const res = await fetch(
@@ -42,7 +43,12 @@ const criarBlog = async () => {
 
     const card__artigo = document.createElement("a");
     card__artigo.classList.add("card__artigo");
-    card__artigo.innerHTML = data[id].slug;
+    card__artigo.innerHTML = "Ler artigo";
+    card__artigo.addEventListener("click", function () {
+      const articleId = id;
+      criarArtigo(articleId);
+      window.location.href = "../artigo.html";
+    });
 
     container__image.appendChild(card__image);
     container__texto.appendChild(card__titulo);
@@ -56,6 +62,27 @@ const criarBlog = async () => {
 };
 
 criarBlog();
+
+const criarArtigo = async (id) => {
+  console.log("ID do artigo:", id);
+
+  const data = await fetchAPI();
+  console.log("Dados do artigo:", data);
+
+  const container = document.createElement("div");
+  container.classList.add("container");
+
+  const container__artigo = document.createElement("div");
+  container__artigo.classList.add("texto");
+
+  const artigo__texto = document.createElement("div");
+  artigo__texto.classList.add("artigo__texto");
+  artigo__texto.innerHTML = data[id].content.rendered;
+
+  container__artigo.appendChild(artigo__texto);
+  container.appendChild(container__artigo);
+  artigo.appendChild(container);
+};
 
 const leia = async () => {
   const res = await fetch(
@@ -93,7 +120,10 @@ const leia = async () => {
 
     const card__artigo = document.createElement("a");
     card__artigo.classList.add("card__artigo");
-    card__artigo.innerHTML = data[id].slug;
+    card__artigo.innerHTML = "Ler artigo";
+    card__artigo.addEventListener("click", function () {
+      window.location.href = "../artigo.html";
+    });
 
     container__image.appendChild(card__image);
     container__texto.appendChild(card__titulo);

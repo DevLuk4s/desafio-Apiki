@@ -37,15 +37,19 @@ body {
 }
 
 .texto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   width: 400px;
 }
 
 .card__titulo {
-  font-size: 900;
+  font-size: bold;
   text-transform: uppercase;
 }
 
 .card__artigo {
+  cursor: pointer;
   color: rgb(44, 44, 169);
 }
 
